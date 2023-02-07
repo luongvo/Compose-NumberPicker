@@ -2,11 +2,21 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("common")
-    id("com.vanniktech.maven.publish")
+    id("maven-publish")
 }
 
-mavenPublish {
-    sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.luongvo"
+            artifactId = "Compose-NumberPicker"
+            version = "1.0.5"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
 
 dependencies {
