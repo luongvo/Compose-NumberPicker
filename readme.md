@@ -108,7 +108,7 @@ var state by remember { mutableStateOf(possibleValues[0]) }
 ListItemPicker(
     label = { it },
     value = state,
-    onValueChange = { state = it },
+    onValueChange = { value, index -> state = value },
     list = possibleValues
 )
 

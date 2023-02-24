@@ -36,7 +36,7 @@ fun <T> ListItemPicker(
     modifier: Modifier = Modifier,
     label: (T) -> String = { it.toString() },
     value: T,
-    onValueChange: (T) -> Unit,
+    onValueChange: (T, Int) -> Unit,
     dividersColor: Color = MaterialTheme.colors.primary,
     list: List<T>,
     textStyle: TextStyle = LocalTextStyle.current,
@@ -90,10 +90,9 @@ fun <T> ListItemPicker(
                             }
                         ).endState.value
 
-                        val result = list.elementAt(
-                            getItemIndexForOffset(list, value, endValue, halfNumbersColumnHeightPx)
-                        )
-                        onValueChange(result)
+                        val index = getItemIndexForOffset(list, value, endValue, halfNumbersColumnHeightPx)
+                        val result = list.elementAt(index)
+                        onValueChange(result, index)
                         animatedOffset.snapTo(0f)
                     }
                 }
