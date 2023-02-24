@@ -157,7 +157,7 @@ private fun DoublesPickerPreview() {
     ListItemPicker(
         label = { it.toString() },
         value = state,
-        onValueChange = { state = it },
+        onValueChange = { value, index -> state = value },
         list = possibleValues,
         textStyle = TextStyle(Color.White),
         selectedTextStyle = TextStyle(Color.White, fontWeight = FontWeight.Bold)
@@ -172,7 +172,7 @@ private fun FruitPickerPreview() {
     ListItemPicker(
         label = { it },
         value = state,
-        onValueChange = { state = it },
+        onValueChange = { value, index -> state = value },
         list = possibleValues
     )
 }
@@ -181,11 +181,11 @@ private fun FruitPickerPreview() {
 @Composable
 private fun IntRangePickerPreview() {
     val possibleValues = (-5..10).toList()
-    var value by remember { mutableStateOf(possibleValues[0]) }
+    var state by remember { mutableStateOf(possibleValues[0]) }
     ListItemPicker(
         label = { it.toString() },
-        value = value,
-        onValueChange = { value = it },
+        value = state,
+        onValueChange = { value, index -> state = value },
         list = possibleValues,
         textStyle = TextStyle(Color.White)
     )
